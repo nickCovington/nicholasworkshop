@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nicholas' Workshop | MTG Life Counter</title>
+    <link rel="shortcut icon" type="image/jpg" href="./images/inchworm-favicon.jpg"/>
+
+    <style>
+        body{
+            margin-left: 25px;
+        }
+
+
+        #value-div{
+            width: 200px;
+            height: 200px;
+            background: url(./images/clayHeart.png);
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #life-value{
+            color: white;
+        }
+
+        button{
+            margin-right: 20px;
+        }
+    </style>
+
+</head>
+<body style="background: cornflowerblue;">
+
+    <a href="./projects.html">Return Home</a>
+
+    <div id="value-div">   
+        <h1 id="life-value"></h1>
+    </div>
+
+    <div id="btn-div">
+        <button id="minus5" onclick="minus5();">-5</button>
+        <button id="minus1" onclick="minus1();">-1</button>
+        <button id="plus1" onclick="plus1();">+1</button>
+        <button id="plus5" onclick="plus5();">+5</button>
+    </div>
+
+
+
+
+
+
+
+    <script>
+        var lifeValue = 20;
+
+        //here i try to pre-load the heart images (normal/gold/black), but not sure if it actually does anything
+        if (document.images) {
+            img1 = new Image();
+            img2 = new Image();
+            img3 = new Image();
+
+            img1.src = "./images/clayHeart.png";
+            img2.src = "./images/clayHeartGold.gif";
+            img3.src = "./images/clayHeartBlack.png";
+		}
+
+        document.getElementById("life-value").innerHTML = lifeValue;
+
+        function minus5(){
+            lifeValue -= 5;
+            document.getElementById("life-value").innerHTML = lifeValue;
+            checkLife();
+        }
+
+        function minus1(){
+            lifeValue -= 1;
+            document.getElementById("life-value").innerHTML = lifeValue;
+            checkLife();
+        }
+
+        function plus1(){
+            lifeValue += 1;
+            document.getElementById("life-value").innerHTML = lifeValue;
+            checkLife();
+        }
+
+        function plus5(){
+            lifeValue += 5;
+            document.getElementById("life-value").innerHTML = lifeValue;
+            checkLife();
+        }
+
+        function checkLife(){
+            if (lifeValue < 1){
+                document.getElementById("value-div").style.background = "url(./images/clayHeartBlack.png)";
+            } else if (lifeValue > 0 && lifeValue < 21){
+                document.getElementById("value-div").style.background = "url(./images/clayHeart.png)";
+            } else if (lifeValue > 20){
+                document.getElementById("value-div").style.background = "url(./images/clayHeartGold.gif)";
+            }
+        }
+
+    </script>
+    
+</body>
+</html>

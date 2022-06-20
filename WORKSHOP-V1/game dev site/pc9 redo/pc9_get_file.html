@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<title>Generating map tiles from a file</title>
+
+<style>
+  #canvas{
+    width: 640px;
+    height: 480px;
+    margin: auto;
+  }
+</style>
+
+
+<!-- 
+
+This is a simple example of getting a server-side file.
+
+-Michael Weeks, March 2020, edited October 2020
+
+-->
+
+
+<script type="application/javascript">
+// <![CDATA[
+
+var INTERVAL = 50;
+var DEBUG = false; //true;
+
+var canvas;             // The canvas shown on the page.
+var ctx;                // The context, used to access the canvas.
+
+var SpriteRow = 0;      // Row of the graphic to show
+var SpriteCol = 0;      // Col of the graphic to show
+var MaxSpriteRow = 1;   // How many rows of images
+var MaxSpriteCol = 5;  // How many columns of images
+
+var SpriteX = 100;      // Position of sprite on the canvas
+var SpriteY = 100;
+var SpriteWidth = 32;   // Width, Height of each subimage
+var SpriteHeight = 32;
+
+var SpriteImage = new Image();   // Sprite sheet
+SpriteImage.src = "spritesheet.png";
+
+// Set up a timer to execute every 50 ms.
+var myInterval;
+
+
+function eraseSprite() {
+  // erase sprite
+  ctx.clearRect(SpriteX, SpriteY, SpriteWidth, SpriteHeight);
+}
+
+
+function drawSprite() {
+  // draw sprite
+  //ctx.drawImage(SpriteImage, SpriteX, SpriteY);
+  ctx.drawImage(SpriteImage, SpriteCol * SpriteWidth, SpriteRow * SpriteHeight, 
+    SpriteWidth, SpriteHeight, SpriteX, SpriteY, SpriteWidth, SpriteHeight); 
+
+
+  // update the next image to show
+  SpriteCol++;
+  if (SpriteCol >= MaxSpriteCol)
+    SpriteCol = 0;
+}
+
+
+function Tick() {
+
+  // Erase the sprite from its current location.
+  eraseSprite();
+
+  // Show a new image
+  drawSprite();
+}
+
+
+function loadComplete() {
+  console.log("Load is complete."); 
+  canvas = document.getElementById("canvas");
+  ctx = canvas.getContext("2d");
+  myInterval = self.setInterval(function(){Tick()}, INTERVAL);
+}
+
+// What to do when the user presses a key.
+function whenKeyPressed(key) {
+  switch (key) {
+    case 28:  // Right arrow was pressed
+      if(SpriteX < 640){
+        SpriteX += 10;
+      } 
+      break;
+    case 29:  // Left arrow, ASCII 29
+      if(SpriteX > 0){
+        SpriteX -= 10;
+      } 
+      break;
+    case 30:  // Up arrow was pressed 
+
+      if(SpriteY > 0){
+        SpriteY -= 10;
+      }
+      break;
+    case 31:  // Down arrow was pressed 
+
+      if(SpriteY < 480){
+        SpriteY += 10;
+      }
+      break;
+  }
+}
+
+
+function loadError(evt) {
+  red();
+  document.getElementById("paragraph").innerHTML = "Error on load";
+}
+function loadAbort(evt) {
+  red();
+  document.getElementById("paragraph").innerHTML = "Load aborted";
+}
+
+function loadFinished(evt) {
+  // var response = this.responseText;  // Useful when things go wrong
+  // var response = this.responseXML;  
+  var response = this.response;
+  // Show the data 
+  document.getElementById("paragraph").innerHTML = "Data read: " + response;
+  green();
+
+  //create array out of 'response'
+  //'response' has 15 items (rows)   &   20 values in each row (value = sprite number to display)
+  var array = response.split("\n");
+  console.log(array);
+}
+
+
+function requestData() {
+  var xmlhttp;
+  xmlhttp = new XMLHttpRequest();
+
+  xmlhttp.addEventListener("load", loadFinished, false);
+  xmlhttp.addEventListener("error", loadError, false);
+  xmlhttp.addEventListener("abort", loadAbort, false);
+
+  xmlhttp.open("GET", "map.txt", true);
+  xmlhttp.send();  // send the request
+}
+
+function requestData2() {
+  var xmlhttp;
+  xmlhttp = new XMLHttpRequest();
+
+  xmlhttp.addEventListener("load", loadFinished, false);
+  xmlhttp.addEventListener("error", loadError, false);
+  xmlhttp.addEventListener("abort", loadAbort, false);
+
+  xmlhttp.open("GET", "map2.txt", true);
+  xmlhttp.send();  // send the request
+}
+
+function requestData3() {
+  var xmlhttp;
+  xmlhttp = new XMLHttpRequest();
+
+  xmlhttp.addEventListener("load", loadFinished, false);
+  xmlhttp.addEventListener("error", loadError, false);
+  xmlhttp.addEventListener("abort", loadAbort, false);
+
+  xmlhttp.open("GET", "map3.txt", true);
+  xmlhttp.send();  // send the request
+  console.log(xmlhttp);
+}
+
+
+// 
+// Change the background screen color to green.
+//
+function green() {
+  document.bgColor = "#0f6000";
+}
+
+// 
+// Change the background screen color to red.
+//
+function red() {
+  document.bgColor = "#6f0000";
+}
+
+//
+// Set up a function to handle key-presses.
+//
+// This should work across most browsers.
+document['onkeydown'] = function(event) {
+  event = event || window.event;
+  var key = event.which || event.cursor;
+  // Check for a special key value, and map it to ASCII.
+  switch (key) {
+    case 37:  // Left arrow, ASCII 29 
+      key = 29;
+      break;
+    case 38:  // Up arrow, ASCII 30
+      key = 30;
+      break;
+    case 39:  // Right arrow, ASCII 28  
+      key = 28;
+      break; 
+    case 40:  // Down arrow, ASCII 31
+      key = 31;
+      break;
+  }
+  //document.getElementById("keydown").innerHTML =
+  //  " key Down event, keycode " + key;
+  whenKeyPressed(key);
+};
+
+///]]>
+</script>
+
+</head>
+<body bgcolor="#0f0000" text="#ffffff">
+  <a href="../gameDevHome.html">Return Home</a>
+
+  <br><br><h2>Select which map you'd like to load:</h2><br>
+  <button type="button" onclick="requestData(); return false"/>Load Map 1</button>
+  <button type="button2" onclick="requestData2(); return false"/>Load Map 2</button>
+  <button type="button3" onclick="requestData3(); return false"/>Load Map 3</button>
+
+  <p id="paragraph">(no data yet)</p>
+  <div id="canvas"></div>
+
+
+</body></html>

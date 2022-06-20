@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<!-- Website Template by freewebsitetemplates.com -->
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Nick Covington | Random</title>
+	<link rel="shortcut icon" type="image/jpg" href="./images/inchworm-favicon.jpg"/>
+	<link rel="stylesheet" href="css/style.css" type="text/css">
+	<link id="dark-stylesheet" rel="stylesheet" href="">
+</head>
+
+<body>
+	<div id="header">
+		<div class="section">
+			<button id="dark-mode" onclick="toggleDarkMode();">Dark Mode</button>
+			<div class="logo">
+				<a href="index.html">Nicholas' Workshop</a>
+			</div>
+			<ul>
+				<li>
+					<a href="index.html">home</a>
+				</li>
+				<li>
+					<a href="projects.html">projects</a>
+				</li>
+				<li>
+					<a href="resume.html">Resume</a>
+				</li>
+				<li>
+					<a href="contact.html">contact</a>
+				</li>
+                <li class="selected">
+                    <a href="random.html">random</a>
+                </li>
+			</ul>
+		</div>
+	</div>
+
+
+
+	<div id="body">
+
+        <div class="random-item">
+            <h3 class="dark-mode-text">4 May 2021</h3>
+            <iframe src="https://open.spotify.com/embed/track/0Z4kAZhiliHgkMxOEtg896" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+        </div>
+
+		<div class="random-item">
+			<h3 class="dark-mode-text">Steam Account</h3>
+			<a href="http://steamsignature.com"><img src="https://steamsignature.com/card/0/76561198116628951.png" alt="steam account card"/></a>
+		</div>
+
+		<div class="random-item">
+			<h3 class="dark-mode-text">Current Seattle Weather</h3>
+			<a class="weatherwidget-io" href="https://forecast7.com/en/47d61n122d33/seattle/?unit=us" data-label_1="SEATTLE" data-theme="original" >SEATTLE</a>
+			<script>
+			!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+			</script>
+		</div>
+
+		<div class="random-item">
+			<h3 class="dark-mode-text">5/23/2021 Doot Doot</h3>
+			<iframe width="560" height="315" src="https://musiclab.chromeexperiments.com/Song-Maker/embed/4668904515829760" frameborder="0" allowfullscreen></iframe>
+		</div>
+
+		<br><br>
+
+		<div class="random-item" id="fact-div">
+			<h3>Randomly Generated Fact : </h3>
+			<p id="fact"></p>
+		</div>
+
+		<br><br>
+
+		<div id="steamPlaytime" class="random-item">
+			<h3 id="onSteam">On Steam, Nick has played </h3>
+			<p id="minutes">999</p>
+			<h3 id="inPast">minutes in the past 2 weeks.</h3>
+		</div>
+
+		
+	</div>
+
+
+
+	<div id="footer">
+		<div>
+			<div class="connect">
+				<a href="http://freewebsitetemplates.com/go/twitter/" id="twitter">twitter</a>
+				<a href="http://freewebsitetemplates.com/go/facebook/" id="facebook">facebook</a>
+				<a href="http://freewebsitetemplates.com/go/googleplus/" id="googleplus">googleplus</a>
+				<a href="http://pinterest.com/fwtemplates/" id="pinterest">pinterest</a>
+			</div>
+			<p>
+				&copy; Copyright 2021 | All rights reserved.
+			</p>
+		</div>
+	</div>
+
+	<script src="./js/darkMode.js"></script>
+	<script src="./js/randomFact.js"></script>
+	<script src="./js/steamAPI.js"></script>
+</body>
+</html>

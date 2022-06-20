@@ -1,0 +1,496 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>Programming Challenge 7</title>
+
+    <style>
+        #canvas{
+            height: 500px;
+            width: 500px;
+            background: lightseagreen;
+            margin: auto;
+            
+        }
+
+    </style>
+
+
+
+    <script type="text/javascript">
+
+        velocity = 10;
+
+        function leftArrowPressed() {
+            //"tomato.style.left" returns "999px"
+            //so i'm parsing it to just get the value 999
+            var tomato = document.getElementById("tomato");
+            var banana = document.getElementById("banana");
+            var canvas = document.getElementById("canvas");
+            var goal = document.getElementById("goal");
+            var wall1 = document.getElementById("wall1");
+            var wall2 = document.getElementById("wall2");
+            var wall3 = document.getElementById("wall3");
+            var wall4 = document.getElementById("wall4");
+            var wall5 = document.getElementById("wall5");
+            var wall6 = document.getElementById("wall6");
+            var wall7 = document.getElementById("wall7");
+            var wall8 = document.getElementById("wall8");
+            var wall9 = document.getElementById("wall9");
+            var wall10 = document.getElementById("wall10");
+            
+            // stop tomato from moving if it collides with canvas edge, banana, or wall
+            if(parseInt(tomato.style.left) >= 5 && !isCollide(tomato, banana) 
+            && !isCollide(tomato, wall1)
+            && !isCollide(tomato, wall2)
+            && !isCollide(tomato, wall3)
+            && !isCollide(tomato, wall4)
+            && !isCollide(tomato, wall5)
+            && !isCollide(tomato, wall6)
+            && !isCollide(tomato, wall7)
+            && !isCollide(tomato, wall8)
+            && !isCollide(tomato, wall9)
+            && !isCollide(tomato, wall10)
+            ){
+                tomato.style.left = parseInt(tomato.style.left) - velocity + 'px';
+            }
+            // if tomato collides with something, bounce off
+            if(isCollide(tomato, banana)
+            || isCollide(tomato, wall1)
+            || isCollide(tomato, wall2)
+            || isCollide(tomato, wall3)
+            || isCollide(tomato, wall4)
+            || isCollide(tomato, wall5)
+            || isCollide(tomato, wall6)
+            || isCollide(tomato, wall7)
+            || isCollide(tomato, wall8)
+            || isCollide(tomato, wall9)
+            || isCollide(tomato, wall10)
+            ){
+                tomato.style.left = parseInt(tomato.style.left) + 30 + 'px';
+            }
+            if(isCollide(tomato, goal)){
+                canvas.style.background = "plum";
+            }
+        }
+
+        function rightArrowPressed() {
+            var tomato = document.getElementById("tomato");
+            var banana = document.getElementById("banana");
+            var canvas = document.getElementById("canvas");
+            var goal = document.getElementById("goal");
+            var wall1 = document.getElementById("wall1");
+            var wall2 = document.getElementById("wall2");
+            var wall3 = document.getElementById("wall3");
+            var wall4 = document.getElementById("wall4");
+            var wall5 = document.getElementById("wall5");
+            var wall6 = document.getElementById("wall6");
+            var wall7 = document.getElementById("wall7");
+            var wall8 = document.getElementById("wall8");
+            var wall9 = document.getElementById("wall9");
+            var wall10 = document.getElementById("wall10");
+            if(parseInt(tomato.style.left) <= 463 && !isCollide(tomato, banana)
+            && !isCollide(tomato, wall1)
+            && !isCollide(tomato, wall2)
+            && !isCollide(tomato, wall3)
+            && !isCollide(tomato, wall4)
+            && !isCollide(tomato, wall5)
+            && !isCollide(tomato, wall6)
+            && !isCollide(tomato, wall7)
+            && !isCollide(tomato, wall8)
+            && !isCollide(tomato, wall9)
+            && !isCollide(tomato, wall10)
+            ){
+                tomato.style.left = parseInt(tomato.style.left) + velocity + 'px';
+            } 
+            if(isCollide(tomato, banana)
+            || isCollide(tomato, wall1)
+            || isCollide(tomato, wall2)
+            || isCollide(tomato, wall3)
+            || isCollide(tomato, wall4)
+            || isCollide(tomato, wall5)
+            || isCollide(tomato, wall6)
+            || isCollide(tomato, wall7)
+            || isCollide(tomato, wall8)
+            || isCollide(tomato, wall9)
+            || isCollide(tomato, wall10)
+            ){
+                //banana.style.left = parseInt(banana.style.left) + 10 + 'px';
+                tomato.style.left = parseInt(tomato.style.left) - 30 + 'px';            
+            } 
+            if(isCollide(tomato, goal)){
+                canvas.style.background = "plum";
+            }       
+        }
+
+        function upArrowPressed() {
+            var tomato = document.getElementById("tomato");
+            var banana = document.getElementById("banana");
+            var canvas = document.getElementById("canvas");
+            var goal = document.getElementById("goal");
+            var wall1 = document.getElementById("wall1");
+            var wall2 = document.getElementById("wall2");
+            var wall3 = document.getElementById("wall3");
+            var wall4 = document.getElementById("wall4");
+            var wall5 = document.getElementById("wall5");
+            var wall6 = document.getElementById("wall6");
+            var wall7 = document.getElementById("wall7");
+            var wall8 = document.getElementById("wall8");
+            var wall9 = document.getElementById("wall9");
+            var wall10 = document.getElementById("wall10");
+            if(parseInt(tomato.style.top) >= 5 && !isCollide(tomato, banana)
+            && !isCollide(tomato, wall1)
+            && !isCollide(tomato, wall2)
+            && !isCollide(tomato, wall3)
+            && !isCollide(tomato, wall4)
+            && !isCollide(tomato, wall5)
+            && !isCollide(tomato, wall6)
+            && !isCollide(tomato, wall7)
+            && !isCollide(tomato, wall8)
+            && !isCollide(tomato, wall9)
+            && !isCollide(tomato, wall10)
+            ){
+                tomato.style.top = parseInt(tomato.style.top) - velocity + 'px';
+            }
+            if(isCollide(tomato, banana)
+            || isCollide(tomato, wall1)
+            || isCollide(tomato, wall2)
+            || isCollide(tomato, wall3)
+            || isCollide(tomato, wall4)
+            || isCollide(tomato, wall5)
+            || isCollide(tomato, wall6)
+            || isCollide(tomato, wall7)
+            || isCollide(tomato, wall8)
+            || isCollide(tomato, wall9)
+            || isCollide(tomato, wall10)
+            ){
+                tomato.style.top = parseInt(tomato.style.top) + 30 + 'px';
+            }
+            if(isCollide(tomato, goal)){
+                canvas.style.background = "plum";
+            }
+        }
+
+        function downArrowPressed() {
+            var tomato = document.getElementById("tomato");
+            var banana = document.getElementById("banana");
+            var canvas = document.getElementById("canvas");
+            var goal = document.getElementById("goal");
+            var wall1 = document.getElementById("wall1");
+            var wall2 = document.getElementById("wall2");
+            var wall3 = document.getElementById("wall3");
+            var wall4 = document.getElementById("wall4");
+            var wall5 = document.getElementById("wall5");
+            var wall6 = document.getElementById("wall6");
+            var wall7 = document.getElementById("wall7");
+            var wall8 = document.getElementById("wall8");
+            var wall9 = document.getElementById("wall9");
+            var wall10 = document.getElementById("wall10");
+            if(parseInt(tomato.style.top) <= 463 && !isCollide(tomato, banana)
+            && !isCollide(tomato, wall1)
+            && !isCollide(tomato, wall2)
+            && !isCollide(tomato, wall3)
+            && !isCollide(tomato, wall4)
+            && !isCollide(tomato, wall5)
+            && !isCollide(tomato, wall6)
+            && !isCollide(tomato, wall7)
+            && !isCollide(tomato, wall8)
+            && !isCollide(tomato, wall9)
+            && !isCollide(tomato, wall10)
+            ){
+                tomato.style.top = parseInt(tomato.style.top) + velocity + 'px';
+            }
+            if(isCollide(tomato, banana)
+            || isCollide(tomato, wall1)
+            || isCollide(tomato, wall2)
+            || isCollide(tomato, wall3)
+            || isCollide(tomato, wall4)
+            || isCollide(tomato, wall5)
+            || isCollide(tomato, wall6)
+            || isCollide(tomato, wall7)
+            || isCollide(tomato, wall8)
+            || isCollide(tomato, wall9)
+            || isCollide(tomato, wall10)
+            ){
+                tomato.style.top = parseInt(tomato.style.top) - 30 + 'px';
+            }
+            if(isCollide(tomato, goal)){
+                canvas.style.background = "plum";
+            }
+        }
+
+        function aPressed() {
+            var tomato = document.getElementById("tomato");
+            var banana = document.getElementById("banana");
+            var canvas = document.getElementById("canvas");
+            var goal = document.getElementById("goal");
+            var wall1 = document.getElementById("wall1");
+            var wall2 = document.getElementById("wall2");
+            var wall3 = document.getElementById("wall3");
+            var wall4 = document.getElementById("wall4");
+            var wall5 = document.getElementById("wall5");
+            var wall6 = document.getElementById("wall6");
+            var wall7 = document.getElementById("wall7");
+            var wall8 = document.getElementById("wall8");
+            var wall9 = document.getElementById("wall9");
+            var wall10 = document.getElementById("wall10");
+            //collision check: canvas, left, up/down, right
+            if(parseInt(banana.style.left) >= -20 && !isCollide(tomato, banana)
+            && !isCollide(banana, wall1)
+            && !isCollide(banana, wall2)
+            && !isCollide(banana, wall3)
+            && !isCollide(banana, wall4)
+            && !isCollide(banana, wall5)
+            && !isCollide(banana, wall6)
+            && !isCollide(banana, wall7)
+            && !isCollide(banana, wall8)
+            && !isCollide(banana, wall9)
+            && !isCollide(banana, wall10)
+            ){
+                banana.style.left = parseInt(banana.style.left) - velocity + 'px';
+            }
+            if(isCollide(tomato, banana)
+            || isCollide(banana, wall1)
+            || isCollide(banana, wall2)
+            || isCollide(banana, wall3)
+            || isCollide(banana, wall4)
+            || isCollide(banana, wall5)
+            || isCollide(banana, wall6)
+            || isCollide(banana, wall7)
+            || isCollide(banana, wall8)
+            || isCollide(banana, wall9)
+            || isCollide(banana, wall10)
+            ){
+                banana.style.left = parseInt(banana.style.left) + 30 + 'px';
+            }
+            if(isCollide(banana, goal)){
+                canvas.style.background = "plum";
+            }
+        }
+
+        function dPressed() {
+            var tomato = document.getElementById("tomato");
+            var banana = document.getElementById("banana");
+            var canvas = document.getElementById("canvas");
+            var goal = document.getElementById("goal");
+            var wall1 = document.getElementById("wall1");
+            var wall2 = document.getElementById("wall2");
+            var wall3 = document.getElementById("wall3");
+            var wall4 = document.getElementById("wall4");
+            var wall5 = document.getElementById("wall5");
+            var wall6 = document.getElementById("wall6");
+            var wall7 = document.getElementById("wall7");
+            var wall8 = document.getElementById("wall8");
+            var wall9 = document.getElementById("wall9");
+            var wall10 = document.getElementById("wall10");
+            if(parseInt(banana.style.left) <= 428 && !isCollide(tomato, banana)
+            && !isCollide(banana, wall1)
+            && !isCollide(banana, wall2)
+            && !isCollide(banana, wall3)
+            && !isCollide(banana, wall4)
+            && !isCollide(banana, wall5)
+            && !isCollide(banana, wall6)
+            && !isCollide(banana, wall7)
+            && !isCollide(banana, wall8)
+            && !isCollide(banana, wall9)
+            && !isCollide(banana, wall10)
+            ){
+                banana.style.left = parseInt(banana.style.left) + velocity + 'px';
+            }
+            if(isCollide(tomato, banana)
+            || isCollide(banana, wall1)
+            || isCollide(banana, wall2)
+            || isCollide(banana, wall3)
+            || isCollide(banana, wall4)
+            || isCollide(banana, wall5)
+            || isCollide(banana, wall6)
+            || isCollide(banana, wall7)
+            || isCollide(banana, wall8)
+            || isCollide(banana, wall9)
+            || isCollide(banana, wall10)
+            ){
+                banana.style.left = parseInt(banana.style.left) - 30 + 'px';
+            }
+            if(isCollide(banana, goal)){
+                canvas.style.background = "plum";
+            }
+        }
+
+        function wPressed() {
+            var tomato = document.getElementById("tomato");
+            var banana = document.getElementById("banana");
+            var canvas = document.getElementById("canvas");
+            var goal = document.getElementById("goal");
+            var wall1 = document.getElementById("wall1");
+            var wall2 = document.getElementById("wall2");
+            var wall3 = document.getElementById("wall3");
+            var wall4 = document.getElementById("wall4");
+            var wall5 = document.getElementById("wall5");
+            var wall6 = document.getElementById("wall6");
+            var wall7 = document.getElementById("wall7");
+            var wall8 = document.getElementById("wall8");
+            var wall9 = document.getElementById("wall9");
+            var wall10 = document.getElementById("wall10");
+            if(parseInt(banana.style.top) >= 12 && !isCollide(tomato, banana)
+            && !isCollide(banana, wall1)
+            && !isCollide(banana, wall2)
+            && !isCollide(banana, wall3)
+            && !isCollide(banana, wall4)
+            && !isCollide(banana, wall5)
+            && !isCollide(banana, wall6)
+            && !isCollide(banana, wall7)
+            && !isCollide(banana, wall8)
+            && !isCollide(banana, wall9)
+            && !isCollide(banana, wall10)
+            ){
+                banana.style.top = parseInt(banana.style.top) - velocity + 'px';
+            }
+            if(isCollide(tomato, banana)
+            || isCollide(banana, wall1)
+            || isCollide(banana, wall2)
+            || isCollide(banana, wall3)
+            || isCollide(banana, wall4)
+            || isCollide(banana, wall5)
+            || isCollide(banana, wall6)
+            || isCollide(banana, wall7)
+            || isCollide(banana, wall8)
+            || isCollide(banana, wall9)
+            || isCollide(banana, wall10)
+            ){
+                banana.style.top = parseInt(banana.style.top) + 30 + 'px';
+            }
+            if(isCollide(banana, goal)){
+                canvas.style.background = "plum";
+            }
+        }
+
+        function sPressed() {
+            var tomato = document.getElementById("tomato");
+            var banana = document.getElementById("banana");
+            var canvas = document.getElementById("canvas");
+            var goal = document.getElementById("goal");
+            var wall1 = document.getElementById("wall1");
+            var wall2 = document.getElementById("wall2");
+            var wall3 = document.getElementById("wall3");
+            var wall4 = document.getElementById("wall4");
+            var wall5 = document.getElementById("wall5");
+            var wall6 = document.getElementById("wall6");
+            var wall7 = document.getElementById("wall7");
+            var wall8 = document.getElementById("wall8");
+            var wall9 = document.getElementById("wall9");
+            var wall10 = document.getElementById("wall10");
+            if(parseInt(banana.style.top) <= 463 && !isCollide(tomato, banana)
+            && !isCollide(banana, wall1)
+            && !isCollide(banana, wall2)
+            && !isCollide(banana, wall3)
+            && !isCollide(banana, wall4)
+            && !isCollide(banana, wall5)
+            && !isCollide(banana, wall6)
+            && !isCollide(banana, wall7)
+            && !isCollide(banana, wall8)
+            && !isCollide(banana, wall9)
+            && !isCollide(banana, wall10)
+            ){
+                banana.style.top = parseInt(banana.style.top) + velocity + 'px';
+            }
+            if(isCollide(tomato, banana)
+            || isCollide(banana, wall1)
+            || isCollide(banana, wall2)
+            || isCollide(banana, wall3)
+            || isCollide(banana, wall4)
+            || isCollide(banana, wall5)
+            || isCollide(banana, wall6)
+            || isCollide(banana, wall7)
+            || isCollide(banana, wall8)
+            || isCollide(banana, wall9)
+            || isCollide(banana, wall10)
+            ){
+                banana.style.top = parseInt(banana.style.top) - 30 + 'px';
+            }
+            if(isCollide(banana, goal)){
+                canvas.style.background = "plum";
+            }
+        }
+
+        //"bounding rectangles" function https://codepen.io/mixal_bl4/pen/qZYWOm
+        //input 2 objects. It will function based off their x-y coords and their width/height values
+        function isCollide(a, b) {
+            return !(
+            ((a.y + a.height+15) < (b.y)) ||
+            (a.y > (b.y + b.height+15)) ||
+            ((a.x + a.width+15) < b.x) ||
+            (a.x > (b.x + b.width+15))
+            );
+        }
+
+        function moveSelection(event) {                    
+            switch (event.keyCode) {
+                case 37:
+                    leftArrowPressed();
+                break;
+
+                case 39:
+                    rightArrowPressed();
+                break;
+
+                case 38:
+                    upArrowPressed();
+                break;
+
+                case 40:
+                    downArrowPressed();
+                break;
+
+                case 65:
+                    aPressed();
+                break;
+                
+                case 68:
+                    dPressed();
+                break;
+
+                case 87:
+                    wPressed();
+                break;
+
+                case 83:
+                    sPressed();
+                break;
+
+            }
+        };
+
+        function gameLoop()
+        {
+            // change position based on 10ms game tick
+            moveSelection();
+            setTimeout("gameLoop()",10);
+        }
+
+    </script>
+  </head>
+
+  <body onload="gameLoop();" onkeydown="moveSelection(event)" onkeyup="moveSelection(event)" background-color='yellow'>
+   <a href="../gameDevHome.html">Return Home</a>
+   <h3>Tomato: arrow keys</h3>
+   <h3>Banana: w, a, s, d</h3>
+   <br>
+   <div id="canvas">
+       <img id="tomato" src="tomato.png" alt="tomato" style="position: relative; left: 300; right: auto; top: 140; bottom: auto; " height="32" width="32">
+       <img id="banana" src="banana.png" alt="banana" style="position: relative; left: 200; right: auto; top: 280; bottom: auto; " height="32" width="32">
+       <!-- setting up wall objects on the canvas -->
+       <img id="wall1" src="wall.png" alt="wall" style="position: relative; left: 80; right: auto; top: 0; bottom: auto; " height="32" width="32">
+       <img id="wall2" src="wall.png" alt="wall" style="position: relative; left: 10; right: auto; top: 32; bottom: auto; " height="32" width="32">
+       <img id="wall3" src="wall.png" alt="wall" style="position: relative; left: -60; right: auto; top: 64; bottom: auto; " height="32" width="32">
+       <img id="wall4" src="wall.png" alt="wall" style="position: relative; left: -95; right: auto; top: 96; bottom: auto; " height="32" width="32">
+       <img id="wall5" src="wall.png" alt="wall" style="position: relative; left: -130; right: auto; top: 128; bottom: auto; " height="32" width="32">
+       <img id="wall6" src="wall.png" alt="wall" style="position: relative; left: -165; right: auto; top: 160; bottom: auto; " height="32" width="32">
+       <img id="wall7" src="wall.png" alt="wall" style="position: relative; left: -200; right: auto; top: 192; bottom: auto; " height="32" width="32">
+       <img id="wall8" src="wall.png" alt="wall" style="position: relative; left: -200; right: auto; top: 224; bottom: auto; " height="32" width="32">
+       <img id="wall9" src="wall.png" alt="wall" style="position: relative; left: -200; right: auto; top: 256; bottom: auto; " height="32" width="32">
+       <img id="wall10" src="wall.png" alt="wall" style="position: relative; left: -200; right: auto; top: 288; bottom: auto; " height="32" width="32">  
+        <!-- goal object (changes backgroud color when touched) -->
+        <img id="goal" src="goal.png" alt="goal" style="position: relative; left: -400; right: auto; top: 15; bottom: auto; " height="32" width="32">
+   </div>
+  </body>
+   
+</html>

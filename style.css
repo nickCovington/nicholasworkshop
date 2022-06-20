@@ -1,0 +1,174 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Source Code Pro", monospace;
+  background-color: #000000;
+  background-image: url(./img/paper-3.png);
+  margin: 0;
+  max-height: 100vh;
+}
+
+#welcome {
+  width: 45%;
+  margin: auto;
+  background-color: #36454f;
+  color: white;
+  padding: 10px;
+  margin-top: 20px;
+  border-radius: 5px;
+}
+
+#welcome h1,
+#welcome p {
+  text-align: center;
+}
+
+#boxes-array {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 50px;
+}
+
+.box {
+  background-color: #36454f;
+  color: white;
+  border-radius: 5px;
+  width: 400px;
+  margin: auto;
+  text-align: center;
+  margin-bottom: 75px;
+  padding: 25px;
+  box-shadow: 3px 3px 3px 1px rgba(0, 0, 0, 0.4);
+}
+
+.box img {
+  width: 100px;
+}
+
+.box img:hover {
+  transform: scale(1.1);
+}
+
+#footer {
+  background-color: #36454f;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  /* trying to fix */
+  position: relative;
+  bottom: -25px;
+}
+
+#footer a {
+  color: #9fe2bf;
+}
+
+@media (max-width: 1000px) {
+  #boxes-array {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ++++++++ */
+/* PROJECTS */
+/* ++++++++ */
+
+.return-home-btn {
+  background-color: #36454f;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 15px;
+  width: 130px;
+}
+
+.return-home-btn a {
+  color: #9fe2bf;
+}
+
+.return-home-btn a:hover {
+  color: white;
+}
+
+#projects-div {
+  background-color: #36454f;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  margin: auto;
+  margin-bottom: 20px;
+  padding: 30px;
+}
+
+#projects-div a {
+  color: black;
+  background-color: white;
+  padding: 10px;
+  font-size: 20px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+#projects-div a:hover {
+  color: tomato;
+}
+
+/* ++++++++ */
+/*  RESUME  */
+/* ++++++++ */
+
+#resume-header {
+  background-color: #36454f;
+  width: 400px;
+  padding: 10px;
+  margin: auto;
+  color: white;
+  margin-top: 20px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+#pdf-resume {
+  display: block;
+  margin: auto;
+}
+
+/* ++++++++ */
+/*  CONTACT */
+/* ++++++++ */
+
+#contact-info {
+  font-size: 19px;
+  box-shadow: 3px 3px 3px 1px rgba(0, 0, 0, 0.4);
+}
+
+#contact-info span {
+  color: tomato;
+}
+
+#contact-info li {
+  margin-bottom: 15px;
+  list-style: none;
+}
+
+#contact-info a {
+  color: white;
+}
+
+#contact-info a:hover {
+  color: #9fe2bf;
+}
+
+#copy-icon {
+  width: 25px;
+}
+
+#copy-btn:hover {
+  border: 2px solid #9fe2bf;
+}

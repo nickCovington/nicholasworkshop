@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nicholas' Workshop | Dice Simulator</title>
+    <link rel="shortcut icon" type="image/jpg" href="./images/inchworm-favicon.jpg"/>
+</head>
+
+
+
+<body style="background: palevioletred;">
+
+    <a href="index.html">Return Home</a>
+    <h1 style="text-align: center;">Dice Simulator</h1>
+
+    <div style="display: flex;">
+        <img id="dice1" src="./images/d1.png" alt="dice display 1" style="margin: auto; margin-right: 5px;">
+        <img id="dice2" src="./images/d1.png" alt="dice display 2" style="margin: auto;">
+        <br>
+    </div>
+
+    <div style="display: flex;">
+        <button id="dice1btn" type="button" onclick="d1Roll();" style="margin: auto; margin-right: 3px; margin-top: 5px;">1st Roll</button>
+        <button id="dice2btn" type="button" onclick="d2Roll();" style="margin: auto; margin-top: 5px;">2nd Roll</button>
+    </div>
+
+    
+
+
+    <script>
+        var d1 = document.getElementById("dice1").src;
+        var d2 = document.getElementById("dice2").src;
+
+        function d1Roll(){
+            var random1 = Math.floor(Math.random()*6) + 1;
+            document.getElementById("dice1").src = "./images/d" + random1 + ".png";
+        }
+
+        function d2Roll(){
+            var random2 = Math.floor(Math.random()*6) + 1;
+            document.getElementById("dice2").src = "./images/d" + random2 + ".png";
+        }
+
+
+
+    </script>
+</body>
+</html>

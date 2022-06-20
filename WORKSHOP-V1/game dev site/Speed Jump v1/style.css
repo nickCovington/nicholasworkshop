@@ -1,0 +1,93 @@
+*{
+    padding: 0;
+    margin: 0;
+    background: lightskyblue;
+}
+
+#title{
+    text-align: center;
+}
+
+#rules{
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+#retry{
+    display: block;
+    margin: auto;
+    background: black;
+    color: yellow;
+    width: 75px;
+}
+
+#gameover{
+    text-align: center;
+    visibility: hidden;
+    background: black;
+    color: red;
+    width: 50%;
+    margin: auto;
+    border-radius: 75%;
+}
+
+#scoreText{
+    background: none;
+    position: fixed;
+    top: 205px;
+}
+
+#scoreValue{
+    background: none;
+    position: relative;
+    top: 0px;
+    left: 110px;
+}
+
+#game{
+    width: 700px;
+    height: 430px;
+    border: solid 2px lightseagreen;
+    margin: auto;
+    margin-top: 150px;
+    /* <a href='https://www.freepik.com/vectors/water'>Water vector created by upklyak - www.freepik.com</a> */
+    background: url(./background.png);
+}
+
+#character{
+    width: 50px;
+    height: 200px;
+    background: url(./character.png);
+    position: relative;
+    top: 200px;
+}
+
+/* character's jump animation */
+.animate{
+    animation: jump .5s;
+}
+
+@keyframes jump{
+    0%{top:200px;}
+    30%{top:130px;}
+    70%{top:130px;}
+    100%{top:200px;}
+}
+
+#block{
+    width: 65px;
+    height: 50px;
+    background: rgb(138, 90, 28);
+    background: url(./rollBarrel.png);
+    position: relative;
+    top: 150px;
+    left: 660px;
+    animation: block 1s infinite linear;
+}
+
+
+
+@keyframes block{
+    0%{left:480px;}
+    100%{left:-50px;}
+}

@@ -1,0 +1,105 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>Simple Image Mover</title>
+
+
+
+       <script type="text/javascript">
+
+            function leftArrowPressed() {
+                var element = document.getElementById("tomato");
+                element.style.left = parseInt(element.style.left) - 5 + 'px';
+            }
+
+            function rightArrowPressed() {
+                var element = document.getElementById("tomato");
+                element.style.left = parseInt(element.style.left) + 5 + 'px';
+            }
+
+            function upArrowPressed() {
+                var element = document.getElementById("tomato");
+                element.style.top = parseInt(element.style.top) - 5 + 'px';
+            }
+
+            function downArrowPressed() {
+                var element = document.getElementById("tomato");
+                element.style.top = parseInt(element.style.top) + 5 + 'px';
+            }
+
+            function aPressed() {
+                var element = document.getElementById("banana");
+                element.style.left = parseInt(element.style.left) - 5 + 'px';
+            }
+
+            function dPressed() {
+                var element = document.getElementById("banana");
+                element.style.left = parseInt(element.style.left) + 5 + 'px';
+            }
+
+            function wPressed() {
+                var element = document.getElementById("banana");
+                element.style.top = parseInt(element.style.top) - 5 + 'px';
+            }
+
+            function sPressed() {
+                var element = document.getElementById("banana");
+                element.style.top = parseInt(element.style.top) + 5 + 'px';
+            }
+
+            function moveSelection(event) {                    
+                switch (event.keyCode) {
+                    case 37:
+                        leftArrowPressed();
+                    break;
+
+                    case 39:
+                        rightArrowPressed();
+                    break;
+
+                    case 38:
+                        upArrowPressed();
+                    break;
+
+                    case 40:
+                        downArrowPressed();
+                    break;
+
+                    case 65:
+                        aPressed();
+                    break;
+                    
+                    case 68:
+                        dPressed();
+                    break;
+
+                    case 87:
+                        wPressed();
+                    break;
+
+                    case 83:
+                        sPressed();
+                    break;
+
+                }
+            };
+
+        function gameLoop()
+        {
+            // change position based on speed
+            moveSelection();
+            setTimeout("gameLoop()",10);
+        }
+
+  </script>
+  </head>
+
+  <body onload="gameLoop();" onkeydown="" onkeyup="moveSelection(event)" background-color='yellow'>
+   <a href="../gameDevHome.html">Return Home</a>
+   <h3>Tomato: arrow keys</h3>
+   <h3>Banana: w, a, s, d</h3>
+  <img id="tomato" src="tomato.png" style="position: absolute; left: 200; right: 200; top: 40; bottom: auto; " height="32" width="32">
+  <img id="banana" src="banana.png" style="position: absolute; left: 200; right: 200; top: 80; bottom: auto; " height="32" width="32">
+  </body>
+   
+</html>

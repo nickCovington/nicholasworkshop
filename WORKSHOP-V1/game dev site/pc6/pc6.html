@@ -1,0 +1,183 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>Programming Challenge 6</title>
+
+    <style>
+        #canvas{
+            height: 500px;
+            width: 500px;
+            background: lightseagreen;
+            margin: auto;
+        }
+
+    </style>
+
+
+
+    <script type="text/javascript">
+
+        velocity = 10;
+
+        function leftArrowPressed() {
+            //"tomato.style.left" returns "999px"
+            //so i'm parsing it to just get the value 999
+            var tomato = document.getElementById("tomato");
+            var banana = document.getElementById("banana");
+            if(parseInt(tomato.style.left) >= 5 && !isCollide(tomato, banana)){
+                tomato.style.left = parseInt(tomato.style.left) - velocity + 'px';
+            }
+            if(isCollide(tomato, banana)){
+                tomato.style.left = parseInt(tomato.style.left) + 30 + 'px';
+            }
+        }
+
+        function rightArrowPressed() {
+            var tomato = document.getElementById("tomato");
+            var banana = document.getElementById("banana");
+            if(parseInt(tomato.style.left) <= 463 && !isCollide(tomato, banana)){
+                tomato.style.left = parseInt(tomato.style.left) + velocity + 'px';
+            } 
+            if(isCollide(tomato, banana)){
+                //banana.style.left = parseInt(banana.style.left) + 10 + 'px';
+                tomato.style.left = parseInt(tomato.style.left) - 30 + 'px';            
+            }        
+        }
+
+        function upArrowPressed() {
+            var tomato = document.getElementById("tomato");
+            var banana = document.getElementById("banana");
+            if(parseInt(tomato.style.top) >= 5 && !isCollide(tomato, banana)){
+                tomato.style.top = parseInt(tomato.style.top) - velocity + 'px';
+            }
+            if(isCollide(tomato, banana)){
+                tomato.style.top = parseInt(tomato.style.top) + 30 + 'px';
+            }
+        }
+
+        function downArrowPressed() {
+            var tomato = document.getElementById("tomato");
+            var banana = document.getElementById("banana");
+            if(parseInt(tomato.style.top) <= 463 && !isCollide(tomato, banana)){
+                tomato.style.top = parseInt(tomato.style.top) + velocity + 'px';
+            }
+            if(isCollide(tomato, banana)){
+                tomato.style.top = parseInt(tomato.style.top) - 30 + 'px';
+            }
+        }
+
+        function aPressed() {
+            var tomato = document.getElementById("tomato");
+            var banana = document.getElementById("banana");
+            //collision check: canvas, left, up/down, right
+            if(parseInt(banana.style.left) >= -20 && !isCollide(tomato, banana)){
+                banana.style.left = parseInt(banana.style.left) - velocity + 'px';
+            }
+            if(isCollide(tomato, banana)){
+                banana.style.left = parseInt(banana.style.left) + 30 + 'px';
+            }
+        }
+
+        function dPressed() {
+            var tomato = document.getElementById("tomato");
+            var banana = document.getElementById("banana");
+            if(parseInt(banana.style.left) <= 428 && !isCollide(tomato, banana)){
+                banana.style.left = parseInt(banana.style.left) + velocity + 'px';
+            }
+            if(isCollide(tomato, banana)){
+                banana.style.left = parseInt(banana.style.left) - 30 + 'px';
+            }
+        }
+
+        function wPressed() {
+            var tomato = document.getElementById("tomato");
+            var banana = document.getElementById("banana");
+            if(parseInt(banana.style.top) >= 12 && !isCollide(tomato, banana)){
+                banana.style.top = parseInt(banana.style.top) - velocity + 'px';
+            }
+            if(isCollide(tomato, banana)){
+                banana.style.top = parseInt(banana.style.top) + 30 + 'px';
+            }
+        }
+
+        function sPressed() {
+            var tomato = document.getElementById("tomato");
+            var banana = document.getElementById("banana");
+            if(parseInt(banana.style.top) <= 463 && !isCollide(tomato, banana)){
+                banana.style.top = parseInt(banana.style.top) + velocity + 'px';
+            }
+            if(isCollide(tomato, banana)){
+                banana.style.top = parseInt(banana.style.top) - 30 + 'px';
+            }
+        }
+
+        //"bounding rectangles" function https://codepen.io/mixal_bl4/pen/qZYWOm
+        //input 2 objects. It will function based off their x-y coords and their width/height values
+        function isCollide(a, b) {
+            return !(
+            ((a.y + a.height+15) < (b.y)) ||
+            (a.y > (b.y + b.height+15)) ||
+            ((a.x + a.width+15) < b.x) ||
+            (a.x > (b.x + b.width+15))
+            );
+        }
+
+        function moveSelection(event) {                    
+            switch (event.keyCode) {
+                case 37:
+                    leftArrowPressed();
+                break;
+
+                case 39:
+                    rightArrowPressed();
+                break;
+
+                case 38:
+                    upArrowPressed();
+                break;
+
+                case 40:
+                    downArrowPressed();
+                break;
+
+                case 65:
+                    aPressed();
+                break;
+                
+                case 68:
+                    dPressed();
+                break;
+
+                case 87:
+                    wPressed();
+                break;
+
+                case 83:
+                    sPressed();
+                break;
+
+            }
+        };
+
+        function gameLoop()
+        {
+            // change position based on 10ms game tick
+            moveSelection();
+            setTimeout("gameLoop()",10);
+        }
+
+    </script>
+  </head>
+
+  <body onload="gameLoop();" onkeydown="moveSelection(event)" onkeyup="moveSelection(event)" background-color='yellow'>
+   <a href="../gameDevHome.html">Return Home</a>
+   <h3>Tomato: arrow keys</h3>
+   <h3>Banana: w, a, s, d</h3>
+   <br>
+   <div id="canvas">
+       <img id="tomato" src="tomato.png" style="position: relative; left: 180; right: auto; top: 140; bottom: auto; " height="32" width="32">
+       <img id="banana" src="banana.png" style="position: relative; left: 200; right: auto; top: 280; bottom: auto; " height="32" width="32">
+   </div>
+  </body>
+   
+</html>
