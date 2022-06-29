@@ -13,9 +13,10 @@ body {
 }
 
 #welcome {
-  width: 45%;
+  width: 524px;
+  height: 140px;
   margin: auto;
-  background-color: #36454f;
+  background-image: url(./img/pixel-fruit-welcome.png);
   color: white;
   padding: 10px;
   margin-top: 20px;
@@ -25,6 +26,13 @@ body {
 #welcome h1,
 #welcome p {
   text-align: center;
+}
+
+#one-liner{
+  margin-top: 25px;
+  border-width: 15px;
+  border-style: solid;
+  border-image: url(./img/checker.png) 25% round;
 }
 
 #boxes-array {
