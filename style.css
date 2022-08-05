@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+:root{
+  --green: #9fe2bf;
+  --grey: #36454f;
+}
+
 body {
   font-family: "Source Code Pro", monospace;
   background-color: #000000;
@@ -59,6 +64,14 @@ body {
 
 .box img:hover {
   transform: scale(1.1);
+}
+
+.box a{
+  color: var(--green);
+}
+
+.box a:hover{
+  color: white;
 }
 
 #footer {
@@ -179,4 +192,9 @@ body {
 
 #copy-btn:hover {
   border: 2px solid #9fe2bf;
+}
+
+.song-box{
+  border: #000000 1px solid;
+  padding: 10px;
 }
