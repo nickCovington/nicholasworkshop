@@ -68,21 +68,25 @@
         
         <div class="box" id="art">
             <h3>Art</h3>
-            <img src="./img/brain.png" alt="Art">
+            <div id="catch-snail">
+                <img src="./img/catch-snail.png" alt="Catch the hidden snail">
+            </div>
+            <img id="brain" src="./img/brain.png" alt="Art" onclick="show_snail_msg()">
         </div>
-        
-        <div class="box" id="random">
-            <h3>Random</h3>
-            <img src="./img/random.png" alt="Roll the Dice">
-        </div>
-
+      
     </div>
-
     
+
+    <!-- secret entrance to comics -->
+    <div id="snail">
+        <a href="./art.html"><img src="./img/snail-sketch.png" alt="elusive snail"></a>
+    </div>
+    
+
     <div id="footer">
         <h3>I appreciate your visit.</h3>
         <div>Icons made by <a href="https://www.flaticon.com/authors/ddara" title="dDara">dDara</a> and <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
-        <p>&copy; Copyright 2021 | All rights reserved.</p>
+        <p>Nick Covington &copy; Copyright 2022 | All tights reserved.</p>
     </div>
 
 
@@ -90,5 +94,12 @@
     
 
     <script src="./script.js"></script>
+    <script src="./snail.js"></script>
+    <script>
+        const snailMsg = document.getElementById("catch-snail");
+        function show_snail_msg(){
+            snailMsg.style.display = "inline";
+        }
+    </script>
 </body>
 </html>

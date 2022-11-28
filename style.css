@@ -270,3 +270,28 @@ body {
 #mini-comic{
   width: 50%;
 }
+
+#butterfly-comics:hover{
+  transform: scale(1);
+}
+
+
+
+#snail{
+  position: absolute;
+  width: 50px;
+  /* background-color: aqua; */
+}
+
+#snail:hover{
+  background-color: white;
+  border-radius: 7px;
+  padding: 4px;
+}
+
+#catch-snail{
+  display: none;
+  position: relative;
+  top: -50px;
+  left: -30px;
+}
